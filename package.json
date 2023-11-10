@@ -1,7 +1,6 @@
 {
-  "name": "node-typescript-boilerplate",
-  "version": "0.0.0",
-  "description": "Minimalistic boilerplate to quick-start Node.js development in TypeScript.",
+  "name": "prometheus-workshop-app",
+  "version": "0.0.1",
   "type": "module",
   "engines": {
     "node": ">= 18.12 <19"
@@ -32,6 +31,7 @@
     "build:poller": "tsc -p tsconfig.poller.json",
     "build:all": "npm run build:server && npm run build:poller",
     "lint": "eslint . --ext .ts --ext .mts",
+    "lint:fix": "eslint --ext .ts --ext .mts --fix .",
     "test": "jest --coverage",
     "prettier": "prettier --config .prettierrc --write .",
     "test:watch": "jest --watch"

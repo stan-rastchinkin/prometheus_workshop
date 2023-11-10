@@ -5,7 +5,18 @@ import { genres, getRandomGenre } from './get-data.js';
 
 const router = Router();
 
-router.get('/recommendation', (_req, res) => {
+const waitArbitraryTime = (
+  minDelayMs: number,
+  maxDelayMs: number,
+): Promise<void> => {
+  const rangeMs = maxDelayMs - minDelayMs;
+  const delay = minDelayMs + Math.round(Math.random() * rangeMs);
+
+  return new Promise((res) => setTimeout(res, delay));
+};
+
+router.get('/recommendation', async (_req, res) => {
+  await waitArbitraryTime(100, 2000);
   res.json({
     artist: faker.person.fullName(),
     genre: getRandomGenre(),
@@ -13,7 +24,8 @@ router.get('/recommendation', (_req, res) => {
   });
 });
 
-router.get('/genres', (_req, res) => {
+router.get('/genres', async (_req, res) => {
+  await waitArbitraryTime(50, 1000);
   res.json(genres);
 });
 

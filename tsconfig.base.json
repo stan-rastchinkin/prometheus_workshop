@@ -5,11 +5,10 @@
     "lib": ["ES2022"],
     "moduleResolution": "Node",
     "rootDir": ".",
-    "outDir": "build",
     "allowSyntheticDefaultImports": true,
     "importHelpers": true,
     "alwaysStrict": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
@@ -17,7 +16,6 @@
     "noUnusedParameters": true,
     "noImplicitAny": false,
     "noImplicitThis": false,
-    "strictNullChecks": false
+    "strictNullChecks": false,
   },
-  "include": ["src/**/*", "__tests__/**/*"]
 }

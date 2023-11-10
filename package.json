@@ -23,12 +23,14 @@
     "typescript": "~5.1"
   },
   "scripts": {
-    "start": "node build/src/main.js",
+    "start:server": "node build/server/main.js",
+    "start:poller": "node build/poller/main.js",
     "clean": "rimraf coverage build tmp",
     "prebuild": "npm run lint",
-    "build": "tsc -p tsconfig.json",
-    "build:watch": "tsc -w -p tsconfig.json",
-    "build:release": "npm run clean && tsc -p tsconfig.release.json",
+    "build:server": "tsc -p tsconfig.server.json",
+    "build:server:watch": "tsc -w -p tsconfig.json",
+    "build:poller": "tsc -p tsconfig.poller.json",
+    "build:all": "npm run build:server && npm run build:poller",
     "lint": "eslint . --ext .ts --ext .mts",
     "test": "jest --coverage",
     "prettier": "prettier --config .prettierrc --write .",

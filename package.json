@@ -42,6 +42,7 @@
     "@faker-js/faker": "^8.2.0",
     "axios": "^1.6.1",
     "express": "^4.18.2",
+    "prom-client": "^15.0.0",
     "tslib": "~2.6"
   },
   "volta": {

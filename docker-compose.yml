@@ -1,5 +1,6 @@
 services:
   server:
+    container_name: prom_ws_server
     build:
       context: ./
       dockerfile: ./server.dockerfile
@@ -10,15 +11,18 @@ services:
     expose:
       - 80
   poller:
+    container_name: prom_ws_poller
     build:
       context: ./
       dockerfile: ./poller.dockerfile
     environment:
-      SERVER_URL: http://server:80
+      SERVER_URL: http://prom_ws_server:80
   prometheus:
+    container_name: prom_ws_collector
     image: ubuntu/prometheus:2.46-22.04
     ports:
       - 23055:9090 # expression browser
+    # tsdb volume
   # busybox:
   #   image: busybox:1.35
   #   command: ['tail', '-f', '/dev/null']

@@ -29,4 +29,8 @@ router.get('/genres', async (_req, res) => {
   res.json(genres);
 });
 
+router.get('/', (_req, res) => {
+  res.redirect('/recommendation');
+});
+
 export default router;

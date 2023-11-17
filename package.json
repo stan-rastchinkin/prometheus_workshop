@@ -36,7 +36,7 @@
     "prettier": "prettier --config .prettierrc --write .",
     "test:watch": "jest --watch"
   },
-  "author": "Jakub Synowiec <jsynowiec@users.noreply.github.com>",
+  "author": "Stanislav Rastchinkin",
   "license": "Apache-2.0",
   "dependencies": {
     "@faker-js/faker": "^8.2.0",

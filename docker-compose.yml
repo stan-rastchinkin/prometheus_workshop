@@ -17,6 +17,8 @@ services:
       dockerfile: ./poller.dockerfile
     environment:
       SERVER_URL: http://prom_ws_server:80
+    depends_on:
+      - server
   prometheus:
     container_name: prom_ws_collector
     image: ubuntu/prometheus:2.46-22.04

@@ -34,24 +34,21 @@ services:
     volumes:
       - ./config:/etc/prometheus:ro
       - ./prom_data:/prometheus:rw
-  # TODO: deploy alertmanager
-
-  # alertmanager:
-  #   container_name: prom_ws_alertmanager
-  #   image: prom/alertmanager:v0.26.0
-  #   restart: unless-stopped
-  #   expose:
-  #     - 9093
-  #   ports:
-  #     - 29093:9093 # web ui is also available at this port
-  #   user: root
-  #   volumes:
-  #     - ./alertmanager_config:/config:ro
-  #     - ./alertmanager_data:/alertmanager:rw
-  #   command:
-  #     - '--config.file=/config/alertmanager.yml'
-  #     - '--log.level=debug'
-
+  alertmanager:
+    container_name: prom_ws_alertmanager
+    image: prom/alertmanager:v0.26.0
+    restart: unless-stopped
+    expose:
+      - 9093
+    ports:
+      - 29093:9093 # web ui is also available at this port
+    user: root
+    volumes:
+      - ./alertmanager_config:/config:ro
+      - ./alertmanager_data:/alertmanager:rw
+    command:
+      - '--config.file=/config/alertmanager.yml'
+      - '--log.level=debug'
   # busybox:
   #   image: busybox:1.35
   #   command: ['tail', '-f', '/dev/null']

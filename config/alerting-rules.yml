@@ -3,14 +3,14 @@ groups:
     rules:
       - alert: FavouriteGenreRecommended
         # Condition for alerting
-        # TODO: Put your favourite genre into the parameter below
+        # TODO to enable alerts: Put your favourite genre into the parameter below
         # You can find the list of genres in src/server/get-data.ts
         expr: increase(recommendation_count{genre=""}[1m]) > 7
         # Annotation - additional informational labels to store more information
         annotations:
           title: 'High recommendation rate for {{ $labels.genre }}'
           description: '{{ $labels.genre }} has been recommended more than 7 times during last 1 minute.'
-          # TODO: Find your user id in Slack and paste it below
+          # TODO to enable alerts: Find your user id in Slack and paste it below
           userId: ''
         # Labels - additional labels to be attached to the alert
         labels:

@@ -26,12 +26,6 @@ services:
     depends_on:
       server:
         condition: service_healthy
-  prometheus:
-    container_name: prom_ws_collector
-    image: ubuntu/prometheus:2.46-22.04
-    ports:
-      - 23055:9090 # expression browser
-    # tsdb volume
   # busybox:
   #   image: busybox:1.35
   #   command: ['tail', '-f', '/dev/null']

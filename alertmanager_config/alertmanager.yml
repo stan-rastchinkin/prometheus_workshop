@@ -1,0 +1,24 @@
+global:
+  resolve_timeout: 1m
+  slack_api_url: 'https://hooks.slack.com/services/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'
+
+route:
+  receiver: 'slack-notifications'
+  repeat_interval: 5s
+  group_by: [ alerts ]
+
+
+receivers:
+  - name: 'slack-notifications'
+    slack_configs:
+      - channel: "#alertmanager-test"
+        send_resolved: true
+        text: >-
+          {{ range .Alerts -}}
+          *Alert:* {{ .Annotations.title }}
+
+          *Notification for:* <@{{ .Annotations.userId }}>
+
+          *Description:* {{ .Annotations.description }}
+
+          {{ end }}

@@ -26,17 +26,31 @@ services:
     depends_on:
       server:
         condition: service_healthy
+  prometheus:
+    container_name: prom_ws_collector
+    image: ubuntu/prometheus:2.46-22.04
+    ports:
+      - 23055:9090 # expression browser
+    volumes:
+      - ./config:/etc/prometheus:ro
+      - ./prom_data:/prometheus:rw
+  # TODO: deploy alertmanager
 
-  # TODO: deploy the prometheus
-
-  # prometheus:
-  #   container_name: prom_ws_collector
-  #   image: ubuntu/prometheus:2.46-22.04
+  # alertmanager:
+  #   container_name: prom_ws_alertmanager
+  #   image: prom/alertmanager:v0.26.0
+  #   restart: unless-stopped
+  #   expose:
+  #     - 9093
   #   ports:
-  #     - 23055:9090 # expression browser
+  #     - 29093:9093 # web ui is also available at this port
+  #   user: root
   #   volumes:
-  #     - ./config:/etc/prometheus:ro
-  #     - ./prom_data:/prometheus:rw
+  #     - ./alertmanager_config:/config:ro
+  #     - ./alertmanager_data:/alertmanager:rw
+  #   command:
+  #     - '--config.file=/config/alertmanager.yml'
+  #     - '--log.level=debug'
 
   # busybox:
   #   image: busybox:1.35

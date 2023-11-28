@@ -30,6 +30,14 @@ const recommendationRequestDurationHistogram = new Histogram({
   help: 'Duration of requests to /recommendation in seconds',
 });
 
+// TODO: add a Counter for recommendations per genre
+
+// const recommendationCounter = new Counter({
+//   name: 'recommendation_count',
+//   help: 'The number of recommendations per genre',
+//   labelNames: ['genre'],
+// });
+
 // #########################
 // # Application Routes
 // #########################
@@ -39,11 +47,18 @@ router.get('/recommendation', async (_req, res) => {
   await waitArbitraryTime(100, 2000);
   stopTimer();
 
-  res.json({
+  const recommendation = {
     artist: faker.person.fullName(),
     genre: getRandomGenre(),
     trackName: faker.music.songName(),
-  });
+  };
+
+  res.json(recommendation);
+
+  // TODO: increase the Counter and pass the "genre" label to distinguish
+  // different genres
+
+  // recommendationCounter.labels(recommendation.genre).inc();
 });
 
 router.get('/genres', async (_req, res) => {

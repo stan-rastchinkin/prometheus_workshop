@@ -1,6 +1,20 @@
 global:
   scrape_interval: 5s
 
+# TODO: tell Prometheus to use the alerting-rules.yml
+
+# rule_files:
+#   - alerting-rules.yml
+
+# TODO: point Prometheus to the alertmanager instance
+
+# alerting:
+#   alertmanagers:
+#     - static_configs:
+#       - targets:
+#         # Alertmanager's default port is 9093
+#         - 'prom_ws_alertmanager:9093'
+
 scrape_configs:
   - job_name: server
     static_configs:

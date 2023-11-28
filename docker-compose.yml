@@ -10,6 +10,12 @@ services:
       - 23054:80
     expose:
       - 80
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost || exit 1
+      interval: 3s
+      timeout: 10s
+      retries: 5
+      start_period: 3s
   poller:
     container_name: prom_ws_poller
     build:
@@ -18,7 +24,8 @@ services:
     environment:
       SERVER_URL: http://prom_ws_server:80
     depends_on:
-      - server
+      server:
+        condition: service_healthy
   prometheus:
     container_name: prom_ws_collector
     image: ubuntu/prometheus:2.46-22.04

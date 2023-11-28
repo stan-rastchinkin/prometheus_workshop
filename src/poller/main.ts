@@ -24,11 +24,15 @@ const pollInLoop = async (
   maxDelayMs: number,
 ) => {
   while (true) {
-    await waitArbitraryTime(minDelayMs, maxDelayMs);
+    try {
+      await waitArbitraryTime(minDelayMs, maxDelayMs);
 
-    if (Math.random() > 0.5) {
-      const { data } = await axios.get(url);
-      console.log(data);
+      if (Math.random() > 0.5) {
+        const { data } = await axios.get(url);
+        console.log(data);
+      }
+    } catch (err) {
+      console.log(err);
     }
   }
 };

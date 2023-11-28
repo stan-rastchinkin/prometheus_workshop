@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { faker } from '@faker-js/faker';
-// TODO: Import Histogram metric
-import promClient, { Counter /*, Histogram*/ } from 'prom-client';
+import promClient, { Counter, Histogram } from 'prom-client';
 
 import { genres, getRandomGenre } from './get-data.js';
 
@@ -26,24 +25,19 @@ const genresRequestsCounter = new Counter({
   help: 'Number of requests to /genres route',
 });
 
-// TODO: create a new Histogram for tracking the duration of requests
-// to the /recommendation route
-
-// const recommendationRequestDurationHistogram = new Histogram({
-//   name: 'recommendation_duration_seconds',
-//   help: 'Duration of requests to /recommendation in seconds',
-// });
+const recommendationRequestDurationHistogram = new Histogram({
+  name: 'recommendation_duration_seconds',
+  help: 'Duration of requests to /recommendation in seconds',
+});
 
 // #########################
 // # Application Routes
 // #########################
 
 router.get('/recommendation', async (_req, res) => {
-  // TODO: use the built-in timers functionality
-
-  // const stopTimer = recommendationRequestDurationHistogram.startTimer();
+  const stopTimer = recommendationRequestDurationHistogram.startTimer();
   await waitArbitraryTime(100, 2000);
-  // stopTimer();
+  stopTimer();
 
   res.json({
     artist: faker.person.fullName(),

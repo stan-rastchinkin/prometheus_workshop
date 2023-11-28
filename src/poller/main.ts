@@ -8,6 +8,8 @@ if (!SERVER_URL) {
   throw new Error('SERVER_URL is not defined');
 }
 
+const RUN_THE_LOOP = true;
+
 const waitArbitraryTime = (
   minDelayMs: number,
   maxDelayMs: number,
@@ -22,8 +24,8 @@ const pollInLoop = async (
   url: string,
   minDelayMs: number,
   maxDelayMs: number,
-) => {
-  while (true) {
+): Promise<void> => {
+  while (RUN_THE_LOOP) {
     try {
       await waitArbitraryTime(minDelayMs, maxDelayMs);
 

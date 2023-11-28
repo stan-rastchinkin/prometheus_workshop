@@ -10,4 +10,4 @@ RUN apk add tini
 COPY ./src/poller /app/src/poller
 RUN npm run build:poller
 
-CMD ["tini", "-v", "--", "npm", "run", "start:poller"]
+ENTRYPOINT ["tini", "-v", "--", "node", "build/poller/main.js"]

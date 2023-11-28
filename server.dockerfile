@@ -10,4 +10,4 @@ RUN apk add tini
 COPY ./src/server /app/src/server
 RUN npm run build:server
 
-CMD ["tini", "-v", "--", "npm", "run", "start:server"]
+ENTRYPOINT ["tini", "-v", "--", "node", "build/server/main.js"]

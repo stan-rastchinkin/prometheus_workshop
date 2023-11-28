@@ -19,3 +19,12 @@ scrape_configs:
       - targets: [ 'prom_ws_server:80' ]
         labels:
           app: 'server'
+
+  # TODO: point Prometheus to itself
+  # the /metrics route is available by default
+
+  # - job_name: "prometheus"
+  #   static_configs:
+  #     - targets: ["prom_ws_collector:9090"]
+  #       labels:
+  #         app: "collector"

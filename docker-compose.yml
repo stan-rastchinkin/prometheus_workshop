@@ -29,6 +29,9 @@ services:
   prometheus:
     container_name: prom_ws_collector
     image: ubuntu/prometheus:2.46-22.04
+    # TODO: expose the port within the Docker network
+    # expose:
+    #   - 9090
     ports:
       - 23055:9090 # expression browser
     volumes:

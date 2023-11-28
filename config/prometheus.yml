@@ -25,3 +25,11 @@ scrape_configs:
       - targets: ["prom_ws_collector:9090"]
         labels:
           app: "collector"
+
+  # TODO: add the node_exporter target
+
+  # - job_name: "server_node_monitoring"
+  #   static_configs:
+  #     - targets: [ 'prom_ws_server:9100' ]
+  #       labels:
+  #         app: 'server'
